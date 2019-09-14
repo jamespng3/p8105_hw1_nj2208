@@ -4,10 +4,77 @@ output: github_document
    
 ---
 
-## GitHub Documents
+## Problem 1a
 
-This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
+```{r Problem 1a}
 
-## Including Code
+library(tidyverse)
+set.seed(1)
 
-You can include R code in the document as follows:
+hw1_df = tibble(
+  ## creating a random sample of size 8 normally distributed
+  rand_samp = rnorm(8), 
+  
+  ## is the random sample value greater than 0 in logic form
+  samp_vec_gtr = rand_samp>0,  
+  
+  ## character vector with 8 elements
+  char_vec = c("I","am","hoping","this","homework","structure","is","correct"), 
+  
+  ## factor vector of length 8 and 3 different levels
+  fac_vec=factor(c("sam", "I", "am", "I", "am", "am", "I", "sam"))
+  
+)
+
+mean(pull(hw1_df,rand_samp))
+mean(pull(hw1_df,samp_vec_gtr))
+mean(pull(hw1_df,char_vec))
+mean(pull(hw1_df,fac_vec))
+```
+
+**1a code responses:**
+
+The mean function works for the random normal distribution sample and the logic vector but not the character or factor vectors
+
+### **Problem 1b**
+
+```{r Problem 1b,eval=FALSE}
+as.numeric(pull(hw1_df,samp_vec_gtr))
+as.numeric(pull(hw1_df,char_vec))
+as.numeric(pull(hw1_df,fac_vec))
+```
+
+```{r}
+logic_vec_num=as.numeric(pull(hw1_df, samp_vec_gtr))
+log_times_rand=(pull(hw1_df,rand_samp))*logic_vec_num
+
+logic_factor=factor(logic_vec_num)
+fac_times_rand=(pull(hw1_df,rand_samp))*logic_factor
+
+logic_factor_num=(pull(hw1_df,rand_samp))*(as.numeric(logic_factor))
+
+
+```
+
+**Problem 1 Responses**
+Trying to return mean for the variables produces values for the normal distribution and logic variable but not the character or factor variables. When looking at these variables from the as.numeric function, it makes sense. The distribution variables are numbers and thus has a mean. The logic variable can be represented by 0/1 and will have a mean when using that method of indicating true/false. The character variable does not have any number associated with each element in the vector. Thus it will not have a mean. The factor variable is the only odd one. It does have an as.numeric value because each element returns their "level" as the numeric but since these numbers are categories and not values, it does not return a mean value.
+
+
+## Problem 2
+```{r}
+set.seed(1)
+
+prob2_df=tibble(
+  x=rnorm(500),
+  y=rnorm(500),
+  logic_x_y=(x+y)>1,
+  num_logic=as.numeric(logic_x_y),
+  fac_vec=factor(logic_x_y)
+)
+```
+
+
+
+
+
+
