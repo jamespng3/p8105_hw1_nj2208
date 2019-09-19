@@ -71,11 +71,34 @@ prob2_df=tibble(
   num_logic=as.numeric(logic_x_y),
   fac_vec=factor(logic_x_y)
 )
+
+
+
+
 ```
 
 
 The data frame from problem 2 has a size of `r nrow(prob2_df)` rows and `r ncol(prob2_df)`  columns. 
 
-The x variable has a mean of `r mean(pull(prob2_df,x))`, and median of `r mean(pull(prob2_df,x))`
+The x variable has a mean of `r mean(pull(prob2_df,x))`, median of `r mean(pull(prob2_df,x))`, and a standard deviation of `r sd(pull(prob2_df,x))`.
+
+X+Y was greated than 1 `r sum(pull(prob2_df,num_logic))/500*100`percent.
+
+```{r}
+ggplot(
+  prob2_df, 
+  aes(x = x, y = y,color=logic_x_y)) + geom_point()
+
+ggsave("firstggplot.jpeg")
+
+ggplot(
+  prob2_df, 
+  aes(x = x, y = y,color=num_logic)) + geom_point()
+
+ggplot(
+  prob2_df, 
+  aes(x = x, y = y,color=fac_vec)) + geom_point()
+
+```
 
 
