@@ -74,7 +74,8 @@ prob2_df=tibble(
 ```
 
 
+The data frame from problem 2 has a size of `r nrow(prob2_df)` rows and `r ncol(prob2_df)`  columns. 
 
-
+The x variable has a mean of `r mean(pull(prob2_df,x))`, and median of `r mean(pull(prob2_df,x))`
 
 
