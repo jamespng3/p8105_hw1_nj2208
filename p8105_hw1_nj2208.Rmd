@@ -101,4 +101,4 @@ ggplot(
 
 ```
 
-
+The logic and factor vector graphs are binary color graphs but the logical as  number graphs, because it utilizes numbers, would allow for a scaled color graph if there were numbers between 0 and 1 in the dataset
